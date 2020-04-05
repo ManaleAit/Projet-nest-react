@@ -31,8 +31,10 @@ import {
   
     async createEtudiant(createEtDTO: CreateEtudiantDTO): Promise<void> {
       // generate salt
-      const salt = await bcrypt.genSalt();
-  
+      const salt = await  bcrypt.genSalt();
+     
+      
+      
       // create new etudiant
       var Et = this.etudiantRepository.create();
       Et.massar=createEtDTO.massar;
@@ -43,7 +45,10 @@ import {
       Et.firstname_ar=createEtDTO.firstname_ar;
       Et.firstname_fr=createEtDTO.firstname_fr;
       Et.note=createEtDTO.note;
-      Et.password=createEtDTO.password;
+      Et.pass_salt=salt;
+      
+      Et.password = await this.hashPassword(createEtDTO.password, salt);
+     
       Et.natio=createEtDTO.natio;
       Et.address=createEtDTO.address;
       Et.phone=createEtDTO.phone;

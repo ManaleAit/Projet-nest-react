@@ -85,10 +85,16 @@ export class etudiant extends BaseEntity{
 
     @Column("varchar", { length: 100 })
     picture:string;
+    @Column("varchar", { length: 50 })
+    pass_salt:string;
+
 
     async validatePassword(password:string):Promise<boolean>{
-        const hash = await bcrypt.hash(password,this.password);        
+        const hash = await bcrypt.hash(password,this.pass_salt);        
         return (hash===this.password);
     }
 
+
+
+ 
 }
