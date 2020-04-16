@@ -1,7 +1,7 @@
 import { Entity, BaseEntity,JoinTable, ManyToMany, Column, ManyToOne, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 import { Candidature } from "src/candidatures/candidature.entity";
 import {etudiant_ci} from "src/etudiant_ci/etudiant_ci.entity";
-import {niveau_ci} from "src/niveau_ci/niveau_ci.entity";
+
 
 @Entity()
 export class Filiere extends BaseEntity{
@@ -13,7 +13,7 @@ export class Filiere extends BaseEntity{
 
     @Column({type:"datetime"})
     created_at:Date;
-
+    
     @Column({type:"datetime"})
     updated_at:Date;
 
@@ -23,7 +23,4 @@ export class Filiere extends BaseEntity{
     @OneToMany(type =>etudiant_ci, etudiant_ci=> etudiant_ci.filiere)
     liste_etudiant_ci: etudiant_ci[];
 
-    @ManyToMany(type => niveau_ci,niveau_ci=>niveau_ci.list_filieres)
-    @JoinTable()
-    liste_niveaux:niveau_ci[];
 }

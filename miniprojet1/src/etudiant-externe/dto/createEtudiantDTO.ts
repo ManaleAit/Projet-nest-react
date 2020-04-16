@@ -2,7 +2,7 @@ import { IsString, MinLength, MaxLength, IsNumber, IsDate } from "class-validato
 import { Double } from "typeorm";
 import { Filiere } from "src/filieres/filiere.entity";
 
-export class CreateEtudiant_ciDTO{
+export class CreateEtudiant_exDTO{
 
 
     
@@ -99,6 +99,13 @@ export class CreateEtudiant_ciDTO{
 
     @IsString()
     nivaeu:string;
+
+    @IsString()
+    type_deplome:string;
+    @IsString()
+    etablissement:string;
+    @IsString()
+    villeEtablissement:string;
 
 
 }

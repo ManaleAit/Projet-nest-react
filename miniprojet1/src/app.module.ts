@@ -8,9 +8,8 @@ import { AdminModule } from './admin/admin.module';
 
 import { EtudiantExterneModule } from './etudiant-externe/etudiant-externe.module';
 import { EtudiantModule } from './etudiants/etudiant.module';
-import { EtudiantCpModule } from './etudiant-cp/etudiant-cp.module';
-import {  Etudiant_ciModule } from './etudiant_ci/etudiant-ci.module';
-import { NiveauCiModule } from './niveau_ci/niveau_ci.module';
+import { Etudiant_cpModule  } from './etudiant-cp/etudiant-cp.module';
+import { Etudiant_ciModule } from './etudiant_ci/Etudiant_ci.Module';
 
 @Module({
   imports: [
@@ -21,10 +20,9 @@ import { NiveauCiModule } from './niveau_ci/niveau_ci.module';
     AdminModule,
     DeplomesCandidatureModule,
     EtudiantExterneModule,
-    EtudiantCpModule,
-    EtudiantCpModule,
+    Etudiant_cpModule ,
     Etudiant_ciModule,
-    NiveauCiModule,
+ 
     ],
   controllers: [],
   providers: []

@@ -1,5 +1,3 @@
-
-
 import { Module } from '@nestjs/common';
 import { Etudiant_ciService  } from './etudiant_ci.service';
 import { TypeOrmModule } from '@nestjs/typeorm';

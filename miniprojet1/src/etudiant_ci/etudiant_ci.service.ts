@@ -66,6 +66,7 @@ export class Etudiant_ciService {
         Et. academie=reateEtudiant_ciDTO.academie;
         Et. picture=Et. picture;
         Et.email=reateEtudiant_ciDTO.email;
+        Et.nivaeu=reateEtudiant_ciDTO.nivaeu;
     
        
         let filiere: Filiere = await this.filiereRepository.findOne({

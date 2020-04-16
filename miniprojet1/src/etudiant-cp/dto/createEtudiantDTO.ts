@@ -1,8 +1,8 @@
 import { IsString, MinLength, MaxLength, IsNumber, IsDate } from "class-validator";
 import { Double } from "typeorm";
-import { Filiere } from "src/filieres/filiere.entity";
 
-export class CreateEtudiant_ciDTO{
+
+export class CreateEtudiant_cpDTO{
 
 
     
@@ -93,12 +93,10 @@ export class CreateEtudiant_ciDTO{
 
     password:string;
 
-    @IsNumber()
-  
-    id_filiere: number;
-
     @IsString()
-    nivaeu:string;
+    niveau_cp:string;
+
+ 
 
 
 }

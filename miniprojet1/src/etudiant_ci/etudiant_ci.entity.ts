@@ -8,5 +8,9 @@ export class  etudiant_ci  extends etudiant{
 
     @ManyToOne(type => Filiere, filiere => filiere.liste_etudiant_ci)
     filiere: Filiere;
+    
+    @Column("varchar", { length: 100 })
+    nivaeu:string;
+
 
 }
