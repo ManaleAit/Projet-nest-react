@@ -3,7 +3,7 @@ import {Etudiant_ciService} from './etudiant_ci.service';
 import {etudiant_ci} from './etudiant_ci.entity';
 
 
-import { Controller, Get, Post, Body, UsePipes, ValidationPipe, Req } from '@nestjs/common';
+import { Controller, Param,Get, Post, Body, UsePipes, ValidationPipe, Req } from '@nestjs/common';
 
 import { CreateEtudiant_ciDTO } from './dto/CreateEtudiantDTO';
 import { AuthDTO } from './dto/AuthDTO';
@@ -29,6 +29,12 @@ export class Etudiant_ciController {
             return this.etudiantsService.signIn(authDTO);
         }
   
+
+        @Get(':massar')
+        async  getTudo(@Param('massar') ma:string):Promise<etudiant_ci>{
+            return  await this.etudiantsService.getOne(ma);
+        }
+    
     
     
 }

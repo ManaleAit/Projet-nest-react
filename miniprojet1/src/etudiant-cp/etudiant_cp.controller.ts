@@ -3,7 +3,7 @@ import {Etudiant_cpService} from './etudiant_cp.service';
 import {etudiant_cp} from './etudiant_cp.entity';
 
 
-import { Controller, Get, Post, Body, UsePipes, ValidationPipe, Req } from '@nestjs/common';
+import { Controller,Param, Get, Post, Body, UsePipes, ValidationPipe, Req } from '@nestjs/common';
 
 import { CreateEtudiant_cpDTO } from './dto/CreateEtudiantDTO';
 import { AuthDTO } from './dto/AuthDTO';
@@ -29,6 +29,9 @@ export class Etudiant_cpController {
             return this.etudiant_cpService.signIn(authDTO);
         }
   
-    
+        @Get(':massar')
+        async  getTudo(@Param('massar') ma:string):Promise<etudiant_cp>{
+            return  await this.etudiant_cpService.getOne(ma);
+        }
     
 }

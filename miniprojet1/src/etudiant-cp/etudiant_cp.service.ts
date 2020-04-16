@@ -80,6 +80,13 @@ export class Etudiant_cpService {
         }
       }
     
+      
+      async getOne(massar:string): Promise<etudiant_cp> {
+        return await this.etudiant_cpRepository.findOne(massar);
+      }
+
+
+
       async signIn(authDTO: AuthDTO): Promise<{ accessToken: string }> {
         const { massar, email, password } = authDTO;
     

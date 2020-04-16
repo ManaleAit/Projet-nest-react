@@ -41,7 +41,7 @@ export class etudiant extends BaseEntity{
     @Column("varchar", { length: 30 })
     address:string;
 
-    @PrimaryColumn("varchar", { length: 20 })
+    @Column("varchar", { length: 20 })
     phone:string;
 
     @Column("varchar", { length: 30 })
