@@ -13,6 +13,7 @@ import {
   import { AuthDTO } from './dto/AuthDTO';
   import { JwtService } from '@nestjs/jwt';
   import * as bcrypt from 'bcrypt';
+  import { NotFoundException } from '@nestjs/common';
   import { JwtPayload } from 'src/etudiant-externe/jwt-payload.interface';
 @Injectable()
 export class etudiant_externeService {
@@ -27,7 +28,13 @@ export class etudiant_externeService {
       async getAllEtudiants(): Promise<etudiant_externe[]> {
         return await this.etudiant_externeRepository.find();
       }
-    
+
+      async getOne(massar:string): Promise<etudiant_externe> {
+        return await this.etudiant_externeRepository.findOne(massar);
+      }
+
+
+
       async createetudiant_externe(reateetudiant_externeDTO:CreateEtudiant_exDTO): Promise<void> {
         // generate salt
         const salt = await  bcrypt.genSalt();
@@ -115,6 +122,11 @@ export class etudiant_externeService {
       async hashPassword(password: string, salt: string): Promise<string> {
         return await bcrypt.hash(password, salt);
       }
+
+      
+    
+
+
 
 
 }

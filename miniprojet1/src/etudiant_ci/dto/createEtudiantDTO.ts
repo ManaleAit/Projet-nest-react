@@ -93,7 +93,7 @@ export class CreateEtudiant_ciDTO{
 
     password:string;
 
-    @IsNumber()
+  
   
     id_filiere: number;
 

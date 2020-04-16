@@ -93,7 +93,6 @@ export class CreateEtudiant_exDTO{
 
     password:string;
 
-    @IsNumber()
   
     id_filiere: number;
 

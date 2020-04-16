@@ -3,7 +3,7 @@ import {etudiant_externeService} from './etudiant_externe.service';
 import {etudiant_externe} from './etudiant_externe.entity';
 
 
-import { Controller, Get, Post, Body, UsePipes, ValidationPipe, Req } from '@nestjs/common';
+import { Controller, Get, Param,Post, Body, UsePipes, ValidationPipe, Req } from '@nestjs/common';
 
 import { CreateEtudiant_exDTO } from './dto/CreateEtudiantDTO';
 import { AuthDTO } from './dto/AuthDTO';
@@ -29,6 +29,12 @@ export class etudiant_externeController {
             return this.etudiantsService.signIn(authDTO);
         }
   
+  
+      
+        @Get(':massar')
+        async  getTudo(@Param('massar') ma:string):Promise<etudiant_externe>{
+            return  await this.etudiantsService. getOne(ma);
+        }
     
     
 }
