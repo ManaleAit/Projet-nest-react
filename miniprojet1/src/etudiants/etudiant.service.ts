@@ -13,7 +13,7 @@ import {
   import { AuthDTO } from './dto/AuthDTO';
   import { JwtService } from '@nestjs/jwt';
   import * as bcrypt from 'bcrypt';
-  import { JwtPayload } from 'src/candidatures/jwt-payload.interface';
+  import { JwtPayload } from 'src/etudiants/jwt-payload.interface';
   
   @Injectable()
   export class etudiantsService {
@@ -60,7 +60,7 @@ import {
       Et.parents_phone=createEtDTO.parents_phone;
       Et.annee=createEtDTO.annee;
       Et.type_bac=createEtDTO.type_bac;
-      Et.mention_bac=Et.mention_bac;
+      Et.mention_bac=createEtDTO.mention_bac;
       Et.annee_bac=createEtDTO.annee_bac;
       Et.lycee=createEtDTO.lycee;
       Et.delegation=Et.delegation;
