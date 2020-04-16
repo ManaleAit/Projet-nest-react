@@ -29,6 +29,12 @@ export class Etudiant_ciController {
             return this.etudiantsService.signIn(authDTO);
         }
   
+        // signin  without token
+
+        @Post("/signin2")
+        async signIn2(@Body(ValidationPipe) authDTO: AuthDTO){
+        return this.etudiantsService.signIn2(authDTO);
+        }
 
         @Get(':massar')
         async  getTudo(@Param('massar') ma:string):Promise<etudiant_ci>{

@@ -23,5 +23,13 @@ export class EtudiantsController {
     async signIn(@Body(ValidationPipe) authDTO: AuthDTO):Promise<{accessToken:string}>{
         return this.etudiantsService.signIn(authDTO);
     }
+
+
+    // signin  without token
+
+    @Post("/signin2")
+    async signIn2(@Body(ValidationPipe) authDTO: AuthDTO){
+        return this.etudiantsService.signIn2(authDTO);
+    }
 }
 

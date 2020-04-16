@@ -12,6 +12,7 @@ export class  etudiant_externe  extends etudiant_ci{
     etablissement:string;
     @Column("varchar", { length: 30 })
     villeEtablissement:string;
+    
 
 
 

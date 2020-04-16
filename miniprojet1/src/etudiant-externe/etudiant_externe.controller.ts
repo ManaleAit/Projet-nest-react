@@ -24,6 +24,14 @@ export class etudiant_externeController {
             return this.etudiantsService.createetudiant_externe(createEtDTO);
         }
     
+        // signin2 without token
+        @Post("/signin2")
+        async signIn2(@Body(ValidationPipe) authDTO: AuthDTO){
+            return this.etudiantsService.signIn2(authDTO);
+        }
+
+
+
         @Post("/signin")
         async signIn(@Body(ValidationPipe) authDTO: AuthDTO):Promise<{accessToken:string}>{
             return this.etudiantsService.signIn(authDTO);

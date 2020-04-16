@@ -33,5 +33,13 @@ export class Etudiant_cpController {
         async  getTudo(@Param('massar') ma:string):Promise<etudiant_cp>{
             return  await this.etudiant_cpService.getOne(ma);
         }
+
+
+           // signin  without token
+
+           @Post("/signin2")
+           async signIn2(@Body(ValidationPipe) authDTO: AuthDTO){
+           return this.etudiant_cpService.signIn2(authDTO);
+           }
     
 }

@@ -8,7 +8,7 @@ import {
   import { etudiantRepository } from './etudiant.repository';
   import { InjectRepository } from '@nestjs/typeorm';
   import { CreateEtudiantDTO } from './dto/createEtudiantDTO';
-  import { Filiere } from 'src/filieres/filiere.entity';
+
   import { FiliereRepository } from 'src/filieres/filiere.repository';
   import { AuthDTO } from './dto/AuthDTO';
   import { JwtService } from '@nestjs/jwt';
@@ -88,7 +88,8 @@ import {
         email,
         massar,
       });
-  
+
+   
       if (etudiant) {
         if (await etudiant.validatePassword(password)) {
           const payload: JwtPayload = { massar, email };
@@ -104,6 +105,26 @@ import {
       }
     }
   
+         
+    async signIn2(authDTO: AuthDTO){
+      const { massar, email, password } = authDTO;
+  
+      const etudiant = await this.etudiantRepository.findOne({
+        massar,
+        password,
+      });
+      if(etudiant!=null){
+
+        return true;
+      }
+
+      return  false;
+    }
+  
+
+
+
+
     async hashPassword(password: string, salt: string): Promise<string> {
       return await bcrypt.hash(password, salt);
     }

@@ -86,6 +86,21 @@ export class Etudiant_cpService {
       }
 
 
+      // signin sans token
+
+      async signIn2(authDTO: AuthDTO){
+      const { massar, email, password } = authDTO;
+      const etudiant = await this.etudiant_cpRepository.findOne({
+      massar,
+      password,
+      });
+      if(etudiant!=null){
+
+       return true;
+      }
+
+       return  false;
+      }
 
       async signIn(authDTO: AuthDTO): Promise<{ accessToken: string }> {
         const { massar, email, password } = authDTO;
