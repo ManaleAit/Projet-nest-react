@@ -7,7 +7,7 @@ export const config:TypeOrmModuleOptions =({
     port:3306,
     username:"root",
     password:"",
-    database:"ensas_con3",
+    database:"pr",
     entities:[__dirname+'/../**/*.entity.js'],
     synchronize:true
 })

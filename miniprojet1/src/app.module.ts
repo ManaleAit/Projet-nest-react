@@ -6,10 +6,8 @@ import { FilieresModule } from './filieres/filieres.module';
 import { DeplomesCandidatureModule } from './deplomes-candidature/deplomes-candidature.module';
 import { AdminModule } from './admin/admin.module';
 
-import { EtudiantExterneModule } from './etudiant-externe/etudiant-externe.module';
 import { EtudiantModule } from './etudiants/etudiant.module';
-import { Etudiant_cpModule  } from './etudiant-cp/etudiant-cp.module';
-import { Etudiant_ciModule } from './etudiant_ci/Etudiant_ci.Module';
+
 
 @Module({
   imports: [
@@ -19,9 +17,8 @@ import { Etudiant_ciModule } from './etudiant_ci/Etudiant_ci.Module';
     EtudiantModule,
     AdminModule,
     DeplomesCandidatureModule,
-    EtudiantExterneModule,
-    Etudiant_cpModule ,
-    Etudiant_ciModule,
+ 
+
  
     ],
   controllers: [],

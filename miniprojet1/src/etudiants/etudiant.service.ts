@@ -2,18 +2,15 @@ import {
     Injectable,
     ConflictException,
     InternalServerErrorException,
-    UnauthorizedException,
+    NotFoundException 
   } from '@nestjs/common';
   import { etudiant } from './etudiant.entity';
   import { etudiantRepository } from './etudiant.repository';
   import { InjectRepository } from '@nestjs/typeorm';
   import { CreateEtudiantDTO } from './dto/createEtudiantDTO';
-
   import { FiliereRepository } from 'src/filieres/filiere.repository';
-  import { AuthDTO } from './dto/AuthDTO';
-  import { JwtService } from '@nestjs/jwt';
-  import * as bcrypt from 'bcrypt';
-  import { JwtPayload } from 'src/etudiants/jwt-payload.interface';
+  import { Filiere } from 'src/filieres/filiere.entity';
+
   
   @Injectable()
   export class etudiantsService {
@@ -22,16 +19,27 @@ import {
       @InjectRepository(etudiantRepository)
       private etudiantRepository: etudiantRepository,
       private filiereRepository: FiliereRepository,
-      private jwtService: JwtService,
+     
     ) {}
   
     async getAllEtudiants(): Promise<etudiant[]> {
       return await this.etudiantRepository.find();
     }
   
+
+
+    async getByMassar(massar:string): Promise<etudiant> {
+      const found= await this.etudiantRepository.findOne(massar);
+
+      if(!found){
+
+        throw new NotFoundException('this etudiant  not found !! ')
+      }
+      return found;
+  }
+
     async createEtudiant(createEtDTO: CreateEtudiantDTO): Promise<void> {
-      // generate salt
-      const salt = await  bcrypt.genSalt();
+  
      
       
       
@@ -45,9 +53,15 @@ import {
       Et.firstname_ar=createEtDTO.firstname_ar;
       Et.firstname_fr=createEtDTO.firstname_fr;
       Et.note=createEtDTO.note;
-      Et.pass_salt=salt;
-      
-      Et.password = await this.hashPassword(createEtDTO.password, salt);
+
+
+     // l'attribue pass_salt
+     
+     Et.pass_salt= Et.pass_salt;
+     
+     Et.niveau=createEtDTO.niveau;
+     Et.status=createEtDTO.status;
+     Et.Type_diplome=createEtDTO.Type_diplome;
      
       Et.natio=createEtDTO.natio;
       Et.address=createEtDTO.address;
@@ -68,8 +82,12 @@ import {
       Et. picture=Et. picture;
       Et.email=createEtDTO.email;
   
-     
-      
+      // Get the filiere object from the id
+      let filiere: Filiere = await this.filiereRepository.findOne({
+       id_filiere: createEtDTO.id_filiere,
+      });
+      Et.filiere = filiere;
+    
       try {
           await this.etudiantRepository.insert(Et);
       } catch (error) {
@@ -81,52 +99,9 @@ import {
       }
     }
   
-    async signIn(authDTO: AuthDTO): Promise<{ accessToken: string }> {
-      const { massar, email, password } = authDTO;
-  
-      const etudiant = await this.etudiantRepository.findOne({
-        email,
-        massar,
-      });
-
-   
-      if (etudiant) {
-        if (await etudiant.validatePassword(password)) {
-          const payload: JwtPayload = { massar, email };
-  
-          const accessToken = await this.jwtService.sign(payload);
-  
-          return { accessToken };
-        } else {
-          throw new UnauthorizedException('Invalid Credentials');
-        }
-      } else {
-        throw new UnauthorizedException('Invalid Credentials');
-      }
-    }
-  
          
-    async signIn2(authDTO: AuthDTO){
-      const { massar, email, password } = authDTO;
-  
-      const etudiant = await this.etudiantRepository.findOne({
-        massar,
-        password,
-      });
-      if(etudiant!=null){
-
-        return true;
-      }
-
-      return  false;
-    }
-  
 
 
 
-
-    async hashPassword(password: string, salt: string): Promise<string> {
-      return await bcrypt.hash(password, salt);
-    }
   }
   

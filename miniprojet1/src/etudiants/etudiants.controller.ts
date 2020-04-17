@@ -1,7 +1,6 @@
-import { Controller, Get, Post, Body, UsePipes, ValidationPipe, Req } from '@nestjs/common';
+import { Controller,Param, Get, Post, Body, UsePipes, ValidationPipe, Req } from '@nestjs/common';
 import { etudiantsService  } from './etudiant.service';
 import { CreateEtudiantDTO } from './dto/CreateEtudiantDTO';
-import { AuthDTO } from './dto/AuthDTO';
 import { etudiant } from './etudiant.entity';
 
 @Controller('etudiants')
@@ -19,17 +18,12 @@ export class EtudiantsController {
         return this.etudiantsService.createEtudiant(createEtDTO);
     }
 
-    @Post("/signin")
-    async signIn(@Body(ValidationPipe) authDTO: AuthDTO):Promise<{accessToken:string}>{
-        return this.etudiantsService.signIn(authDTO);
+
+    @Get(':massar')
+    async  getTudo(@Param('massar') ma:string){
+        return  this.etudiantsService.getByMassar(ma);
     }
+    
 
-
-    // signin  without token
-
-    @Post("/signin2")
-    async signIn2(@Body(ValidationPipe) authDTO: AuthDTO){
-        return this.etudiantsService.signIn2(authDTO);
-    }
 }
 

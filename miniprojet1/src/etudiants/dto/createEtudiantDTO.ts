@@ -94,7 +94,18 @@ export class CreateEtudiantDTO{
 
     password:string;
 
- 
+    @IsString()
+    niveau:string;
 
+
+    @IsString()
+    status:string;
+
+    @IsString()
+    Type_diplome:string;
+
+
+    id_filiere: number;
+    
 
 }

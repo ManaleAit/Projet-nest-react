@@ -1,6 +1,6 @@
-import { Entity, BaseEntity, PrimaryColumn, Column,Double } from "typeorm";
-import * as bcrypt from 'bcrypt';
+import { Entity, BaseEntity, PrimaryColumn,ManyToOne, Column,Double } from "typeorm";
 
+import { Filiere } from "src/filieres/filiere.entity";
 
 @Entity()
 export class etudiant extends BaseEntity{
@@ -85,14 +85,26 @@ export class etudiant extends BaseEntity{
 
     @Column("varchar", { length: 100 })
     picture:string;
+
+
+    // att  pass_salt
     @Column("varchar", { length: 50 })
     pass_salt:string;
 
+    
+    @Column("varchar", { length: 100 })
+    niveau:string;
 
-    async validatePassword(password:string):Promise<boolean>{
-        const hash = await bcrypt.hash(password,this.pass_salt);        
-        return (hash===this.password);
-    }
+    @ManyToOne(type => Filiere, filiere => filiere.liste_etudiant)
+    filiere: Filiere;
+
+
+        
+    @Column("varchar", { length: 100 })
+    status:string;
+
+    @Column("varchar", { length: 100 })
+    Type_diplome:string;
 
 
 

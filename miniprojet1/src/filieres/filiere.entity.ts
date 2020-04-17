@@ -1,6 +1,6 @@
 import { Entity, BaseEntity,JoinTable, ManyToMany, Column, ManyToOne, PrimaryGeneratedColumn, OneToMany } from "typeorm";
 import { Candidature } from "src/candidatures/candidature.entity";
-import {etudiant_ci} from "src/etudiant_ci/etudiant_ci.entity";
+import {etudiant} from "src/etudiants/etudiant.entity";
 
 
 @Entity()
@@ -20,7 +20,7 @@ export class Filiere extends BaseEntity{
     @OneToMany(type => Candidature, candidature => candidature.filiere)
     liste_candidature: Candidature[];
 
-    @OneToMany(type =>etudiant_ci, etudiant_ci=> etudiant_ci.filiere)
-    liste_etudiant_ci: etudiant_ci[];
+    @OneToMany(type =>etudiant, etudiant=> etudiant.filiere)
+    liste_etudiant: etudiant[];
 
 }
